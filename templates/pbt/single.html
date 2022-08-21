@@ -1,0 +1,70 @@
+{% extends 'pbt/_base.html' %}
+{% load blog_tags %}
+{% load static %}
+{% block content %}
+<!-- Page Header Start -->
+<div class="container py-5 px-2 bg-primary">
+    <div class="row py-5 px-4">
+        <div class="col-sm-6 text-center text-md-left">
+            <h1 class="mb-3 mb-md-0 text-white text-uppercase font-weight-bold">{{ post.title }}</h1>
+        </div>
+        <div class="col-sm-6 text-center text-md-right">
+            <div class="d-inline-flex pt-2">
+                <h4 class="m-0 text-white"><a class="text-white" href="{% url 'home'%}">Home</a></h4>
+                <!-- <h4 class="m-0 text-white px-2">/</h4>
+                            <h4 class="m-0 text-white">Blog Detail</h4> -->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Page Header End -->
+
+<!-- Blog Detail Start -->
+<div class="container py-5 px-2 bg-white">
+    <div class="row px-4">
+        <div class="col-12">
+            <img class="img-fluid mb-4" src="{{ post.img.url }}" alt="Image">
+            <h2 class="mb-3 font-weight-bold">{{post.synopsis}}</h2>
+            <div class="d-flex">
+                <p class="mr-3 text-muted"><i class="fa fa-calendar-alt"></i> {{post.publish}} </p>
+            </div>
+            {{post.content|safe}}
+        </div>
+        {% for tag in article.tags.all %}
+        <div class="col-12 py-4">
+            <a href="{% url 'post_list_by_tag' tag.slug %}">
+                {{ tag.name }}
+            </a>
+        </div>
+        {% if not forloop.last %}
+        {% endif %}
+        {% endfor %}
+    </div>
+</div>
+<!-- Blog Detail End -->
+
+<h2 class="font-weight-bold">Similar posts</h2>
+{% for post in similar_posts %}
+<p>
+    <a class="font-weight-bold py-4" href="{{ post.get_absolute_url }}">{{ post.title }}</a>
+</p>
+{% empty %}
+There are no similar posts yet.
+{% endfor %}
+
+<!-- Back to Top -->
+<a href="#" class="back-to-top"><i class="fa fa-angle-double-up"></i></a>
+
+<!-- JavaScript Libraries -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+<script src="lib/easing/easing.min.js"></script>
+<script src="lib/waypoints/waypoints.min.js"></script>
+
+<!-- Contact Javascript File -->
+<script src="mail/jqBootstrapValidation.min.js"></script>
+<script src="mail/contact.js"></script>
+
+<!-- Template Javascript -->
+<script src="{% static 'js/main.js' %}"></script>
+{% endblock %}
