@@ -4,7 +4,16 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-
+django = "*"
+django-jazzmin = "*"
+django-tinymce = "*"
+django-filebrowser = "*"
+django-grappelli = "*"
+django-taggit = "*"
+whitenoise = "*"
+dj-database-url = "*"
+django-heroku = "*"
+dotenv ="*"
 [dev-packages]
 
 [requires]

@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from .models import Post,Comment
+from .models import Post
 from django.core.paginator import Paginator, EmptyPage,PageNotAnInteger 
 from taggit.models import Tag
 from .forms import SearchForm

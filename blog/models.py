@@ -20,7 +20,7 @@ class PublishedManager(models.Manager):
         return super(PublishedManager, self).get_queryset().filter(status = 'published')
 
 class Post(models.Model):
-    STATUS_CHOICES = (('draft','Draft'), ('published','Published'))
+    STATUS_CHOICES = (('draft','Draft'), ('published','Published'), ('top-picks','Top-Picks'))
 
     CATEGORY_CHOICES =(('news','News'),('tech','Tech'),('lifestyle','Lifestyle'),
                             ('entertainment','Entertainment'),
@@ -53,19 +53,7 @@ class Post(models.Model):
 
 
 
-class Comment(models.Model):
-    post = models.ForeignKey(Post,
-                            on_delete=models.CASCADE,
-                            related_name='comments')
-    body = models.TextField()
-    created = models.DateTimeField(auto_now_add=True)
-    updated = models.DateTimeField(auto_now=True)
-    active = models.BooleanField(default=True)
 
-    class Meta:
-        ordering = ('created',)
-    def __str__(self):
-        return f'Comment by {self.name} on {self.post}'
 
 class Subscribers(models.Model):
     mail = models.EmailField()
