@@ -13,7 +13,8 @@ django-taggit = "*"
 whitenoise = "*"
 dj-database-url = "*"
 django-heroku = "*"
-dotenv ="*"
+python-dotenv = "*"
+
 [dev-packages]
 
 [requires]
