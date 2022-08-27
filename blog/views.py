@@ -33,13 +33,11 @@ def post_list(request,tag_slug=None):
 
 def post_detail(request, pk):
     post = get_object_or_404(Post, id=pk)
-    comments = post.comments.filter(active=True)
     post_tags_ids = post.tags.values_list('id', flat=True).exclude(id=pk)
     similar_posts = Post.published.filter(tags__in=post_tags_ids)
     similar_posts = similar_posts.annotate(same_tags=Count('tags')).order_by('-same_tags','-publish')[:5]
     return render(request, 'pbt/single.html',
                                 {'post':post,
-                                'comments':comments,
                                 'similar_posts':similar_posts})
                             
 
