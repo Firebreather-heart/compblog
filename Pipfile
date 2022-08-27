@@ -17,6 +17,9 @@ python-dotenv = "*"
 gunicorn = "*"
 pillow = "*"
 markdown = "*"
+drf-yasg = "*"
+django-rest-framework = "*"
+django-rest-swagger = "*"
 
 [dev-packages]
 

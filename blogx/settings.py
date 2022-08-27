@@ -52,14 +52,27 @@ INSTALLED_APPS = [
 
     #local
     'blog.apps.BlogConfig',
+    'api.apps.ApiConfig',
 
     #3rd party
     'tinymce',
     'filebrowser',
     "grappelli",
     'taggit',
+    'drf_yasg',
+    "rest_framework_swagger",
+    "rest_framework",
+    
+    
     
 ]
+
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES':[
+        'rest_framework.permissions.AllowAny'
+    ]
+}
 
 SITE_ID = 1
 MIDDLEWARE = [
@@ -143,6 +156,7 @@ USE_L10N = True
 
 USE_TZ = True
 
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
@@ -158,9 +172,9 @@ MEDIA_URL = '/media/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-django_heroku.settings(locals())
-db_from_env = dj_database_url.config(conn_max_age=500)
-DATABASES['default'].update(db_from_env)
+#django_heroku.settings(locals())
+#db_from_env = dj_database_url.config(conn_max_age=500)
+#DATABASES['default'].update(db_from_env)
 
 TINYMCE_DEFAULT_CONFIG = {
      'height': 360,
@@ -335,5 +349,5 @@ JAZZMIN_UI_TWEAKS = {
     "theme": "default",
    # "dark_mode_theme": "darkly",
 }
-options = DATABASES['default'].get('OPTIONS', {})
-options.pop('sslmode',None)
+# options = DATABASES['default'].get('OPTIONS', {})
+# options.pop('sslmode',None)

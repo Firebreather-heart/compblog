@@ -14,7 +14,7 @@
                 <small class="mr-2"><i class="fa fa-folder"></i> Web Design</small>
                 <small class="mr-2"><i class="fa fa-comments"></i> 15 Comments</small>
             </div>
-            <a href="" class="btn btn-lg btn-outline-light mt-4">Read More</a>
+           
         </div>
     </div>
     <div class="myslides fades">
@@ -64,7 +64,7 @@
 <p class="tags">
     Tags:
     {% for tag in article.tags.all %}
-    <a href="{% url 'post_list_by_tag' tag.slug %}" class="w3-large">
+    <a href="{% url 'post_list_by_tag' tag.slug %}" class="w3-large mb-2">
         {{ tag.name }}
     </a>
     {% if not forloop.last %}
