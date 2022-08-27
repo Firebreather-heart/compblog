@@ -10,9 +10,9 @@ register = template.Library()
 def total_posts():
     return Post.published.count()
 
-@register.simple_tag
-def total_comments():
-    return Post.comments.counts()
+# @register.simple_tag
+# def total_comments():
+#     return Post.comments.counts()
 
 @register.inclusion_tag('pbt/latest_posts.html')
 def show_latest_posts(count=5):
@@ -20,9 +20,9 @@ def show_latest_posts(count=5):
     return {'latest_posts': latest_posts}
 
 
-@register.simple_tag
-def get_most_commented_posts(count=5):
-     return Post.published.annotate(total_comments=Count('comments')).order_by('-total_comments')[:count]
+# @register.simple_tag
+# def get_most_commented_posts(count=5):
+#      return Post.published.annotate(total_comments=Count('comments')).order_by('-total_comments')[:count]
 
 
 @register.filter(name='markdown')

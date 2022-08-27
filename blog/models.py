@@ -35,7 +35,7 @@ class Post(models.Model):
     updated = models.DateTimeField(default=timezone.now, )
     img = models.ImageField(upload_to='blog/images', blank=True)
     status = models.CharField(max_length=10, choices = STATUS_CHOICES, default='draft')
-    synopsis = models.CharField(max_length=250, blank=True)
+    synopsis = models.CharField(max_length=250, blank=True, null=True)
     objects = models.Manager()
     published = PublishedManager()
     content = HTMLField(blank=True)

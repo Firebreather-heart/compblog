@@ -34,10 +34,6 @@ def post_list(request,tag_slug=None):
 def post_detail(request, pk):
     post = get_object_or_404(Post, id=pk)
     comments = post.comments.filter(active=True)
-    if request.POST:
-        comt = request.POST.get('comment')
-        comment = Comment(body=comt, post_id=pk)
-        comment.save()
     post_tags_ids = post.tags.values_list('id', flat=True).exclude(id=pk)
     similar_posts = Post.published.filter(tags__in=post_tags_ids)
     similar_posts = similar_posts.annotate(same_tags=Count('tags')).order_by('-same_tags','-publish')[:5]
@@ -51,10 +47,12 @@ def search(request):
     form = SearchForm()
     query = None 
     results = []
-    if 'query' in request.GET:
-        form = form.cleaned_data['query']
-        search_vector = SearchVector('title','body')
-        search_query =  SearchQuery 
+    if request.method == 'GET':
+        form = SearchForm(request.GET)
+        query = request.GET.get('query')
+        #query = form.cleaned_data['query']
+        search_vector = SearchVector('title','content')
+        search_query =  SearchQuery(query) 
         results = Post.published.annotate(search= search_vector,
                                             rank=SearchRank(search_vector, search_query)).filter(search=search_query).order_by('-rank')
     return render(request, 'pbt/search.html',

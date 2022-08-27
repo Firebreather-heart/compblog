@@ -16,6 +16,7 @@ django-heroku = "*"
 python-dotenv = "*"
 gunicorn = "*"
 pillow = "*"
+markdown = "*"
 
 [dev-packages]
 
