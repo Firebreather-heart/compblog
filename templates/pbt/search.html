@@ -6,22 +6,22 @@
 {% block content %}
 {% if query %}
 <div class="w3-content w3-margin">
-    <h1>Search Results</h1>
+    <p class="w3-xlarge">Search Results</p>
 
-    <h3>
+    <p class="w3-large">
         {% with results.count as total_results %}
         Found {{ total_results }} result{{ total_results|pluralize }}
         {% endwith %}
-    </h3>
+    </p>
     {% for post in results %}
-    <div class="w3-margin" style="display: flex;">
-        <i class="w3-xxlarge">&rarr;</i><h4 class="w3-xxlarge"><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h4>
+    <div class="w3-margin">
+        <i class="w3-xlarge">&rarr;</i>
+        <h4 class="w3-xlarge"><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h4>
         {{ post.body|markdown|truncatewords_html:5 }}
         {% empty %}
         <p>No results found</p>
     </div>
     {% endfor %}
 </div>
-
 {% endif %}
-{% endblock %}
+{% endblock content %}
